@@ -15,9 +15,22 @@
 //    with this program; if not, write to the Free Software Foundation, Inc.,
 //    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
+//  Disable MUA Web Converter to prevent duplicate converting. 
+(function(){
+    var disableMUA = document.createElement("div");
+    disableMUA.setAttribute("style", "display: none");
+    disableMUA.setAttribute("id", "disableMUA");
+    document.body.appendChild(disableMUA);
+})();
+
+// start code from rabbit
+
+// End code from rabbit
+
+'use strict';
 
 // Detecting the browser's unicode redering
-function getWidth(t){
+function mmFontWidth(t){
     var e = document.createElement("div");
     e.setAttribute("style", "position: absolute; top: -999;");
     e.innerHTML = t ;
@@ -28,7 +41,7 @@ function getWidth(t){
 }
 
 function isZawgyiBrowser(){
-    return (getWidth("က္က") >= getWidth("က") * 1.5 );
+    return (mmFontWidth("က္က") >= mmFontWidth("က") * 1.5 );
 }
 
 var  zawgyiUser = isZawgyiBrowser();
@@ -37,7 +50,7 @@ var  zawgyiUser = isZawgyiBrowser();
 /* If converter result is not correct we need to normallize the some error. 
 *  eg. double (ု) error due to mac zawgyi keyboard.
 */
-function normalize(text){
+function uniNormalize(text){
     text =  text.replace( /(\u102F)(\u102F)/g, "$1");
     return text;
 }
@@ -47,12 +60,12 @@ function normalize(text){
 */
 
 function autoConvert(text){
-    textIsZawgyi = isZawgyi(text);
+    textIsZawgyi = isZawgyiTex(text);
     if(textIsZawgyi && !zawgyiUser){
         text = Z1_Uni(text);
-        text = normalize(text);
+        text = Rabbit.zg2uni(text);
     } else if(!textIsZawgyi && zawgyiUser){
-        text = Uni_Z1(text);
+        text = Rabbit.uni2zg(text);
     }
     return text;
 }
@@ -116,16 +129,16 @@ var zawgyiRegex = "\u1031\u103b" // e+medial ra
     // virama + (zawgyi) medial ra
     + "|\u1039[\u107E-\u1084]";
 
-var Zawgyi = new RegExp(zawgyiRegex);
+var ZawgyiReg = new RegExp(zawgyiRegex);
 
 /* Myanmar text checking regular expression 
  *  is the part of Myanmar Font Tagger
  * http://userscripts-mirror.org/scripts/review/103745 
  */
-var Myanmar = new RegExp("[\u1000-\u1021]");
+var MyanmarReg = new RegExp("[\u1000-\u1021]");
 
-function isMyanmar(input) {
-    return Myanmar.test(input) ? true : false;
+function isMyanmarText(input) {
+    return MyanmarReg.test(input) ? true : false;
 }
 
 /*
@@ -135,7 +148,7 @@ function isMyanmar(input) {
  * return = boolean 
  *
  */
-function isZawgyi(input) {
+function isZawgyiTex(input) {
     input = input.trim();
     //console.log(input);
     var textSplittedByLine = input.split(/[\f\n\r\t\v\u00a0\u1680\u180e\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]/);
@@ -145,7 +158,7 @@ function isZawgyi(input) {
             //  console.log(textSplitted[j]);
             if (j != 0)
                 textSplitted[j] = " " + textSplitted[j];
-            if (Zawgyi.test(textSplitted[j]))
+            if (ZawgyiReg.test(textSplitted[j]))
                 return true;
         }
     }
@@ -153,7 +166,7 @@ function isZawgyi(input) {
 }
 
 
-function shouldIgnoreNode(node) {
+function shouldIgnoreElement(node) {
     if (node.nodeName == "INPUT" || node.nodeName == "SCRIPT" || node.nodeName == "TEXTAREA") {
         return true;
     } else if (node.isContentEditable == true) {
@@ -166,7 +179,7 @@ function shouldIgnoreNode(node) {
  * This part are from Myanmar Font Tagger scripts developed by Ko Thant Thet Khin Zaw
  * http://userscripts-mirror.org/scripts/review/103745
  */
-function convertTree(parent) {
+function convert_Tree(parent) {
     if (parent instanceof Node == false || parent instanceof SVGElement) {
         return;
     }
@@ -177,14 +190,18 @@ function convertTree(parent) {
     for (var i = 0; i < parent.childNodes.length; i++) {
         var child = parent.childNodes[i];
         if (child.nodeType != Node.TEXT_NODE && child.hasChildNodes()) {
-            convertTree(child);
+            convert_Tree(child);
         } else if (child.nodeType == Node.TEXT_NODE) {
             var text = child.textContent.replace(/[\u200b\uFFFD]/g, "");
-            if (text && isMyanmar(text)) {
-                if (shouldIgnoreNode(parent) == false) {
+            if (text && isMyanmarText(text)) {
+                if (shouldIgnoreElement(parent) == false) {
                     child.textContent = autoConvert(text);
                     if (parent.className == null || (parent.classList.contains('_c_o_nvert_') == false && parent.classList.contains('text_exposed_show') == false)) {
                         parent.classList.add('_c_o_nvert_');
+                        // var parentElement = findParent(parent);
+                        // if(isDuplicated(parentElement)===false){
+                        //     parentElement.classList.add("i_am_zawgyi");
+                        // }
                     }
                 }
             }
@@ -215,7 +232,7 @@ function findParent(element){
 }
 
 
-var addObserver = function() {
+var runObserver = function() {
     var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
     var list = document.querySelector('body');
 
@@ -225,13 +242,13 @@ var addObserver = function() {
                 for (var i = 0; i < mutation.addedNodes.length; i++) {
                     var node = mutation.addedNodes[i];
                     if (node.nodeType == Node.TEXT_NODE) {
-                        convertTree(node.parentNode);
+                        convert_Tree(node.parentNode);
                     } else {
-                        convertTree(node);
+                        convert_Tree(node);
                     }
                 }
             } else if (mutation.type == 'characterData') {
-                convertTree(mutation.target);
+                convert_Tree(mutation.target);
             }
         });
     });
@@ -248,14 +265,19 @@ var addObserver = function() {
 
 
 var title = document.title;
-if (isMyanmar(title)) {
+if (isMyanmarText(title)) {
     document.title = autoConvert(title);
 }
 
 
 var list = document.querySelector('body');
-if (list) {
-    convertTree(document.body);
+if (!list) {
+    if (document.addEventListener) {
+        document.addEventListener("DOMContentLoaded",function(){
+            runObserver();
+        }, false);
+    }
+} else {
+    convert_Tree(document.body);
+    runObserver();
 }
-
-addObserver();
