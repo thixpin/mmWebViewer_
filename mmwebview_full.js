@@ -1,23 +1,852 @@
-//    thixpin Myanmar Web Viewer
-//    Copyright (C) 2018 thixpin (MUA)
+// The MIT License (MIT)
 
-//    This program is free software; you can redistribute it and/or modify
-//    it under the terms of the GNU General Public License as published by
-//    the Free Software Foundation; either version 3 of the License, or
-//    (at your option) any later version.
+// Copyright (c) 2018 thixpin
 
-//    This program is distributed in the hope that it will be useful,
-//    but WITHOUT ANY WARRANTY; without even the implied warranty of
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//    GNU General Public License for more details.
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
 
-//    You should have received a copy of the GNU General Public License along
-//    with this program; if not, write to the Free Software Foundation, Inc.,
-//    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
+//  Disable MUA Web Converter to prevent duplicate converting. 
+(function(){
+    var disableMUA = document.createElement("div");
+    disableMUA.setAttribute("style", "display: none");
+    disableMUA.setAttribute("id", "disableMUA");
+    document.body.appendChild(disableMUA);
+})();
+
+// start code from rabbit
+var Rabbit = {
+    "zg2uni" : zg2uni,
+    "uni2zg": uni2zg
+  }
+  
+  function uni2zg(output) {
+    var rule = [
+      {
+          "from": "\u1004\u103a\u1039",
+          "to": "\u1064"
+      },
+      {
+          "from": "\u1039\u1010\u103d",
+          "to": "\u1096"
+      },
+      {
+          "from": "\u102b\u103a",
+          "to": "\u105a"
+      },
+      {
+          "from": "\u100b\u1039\u100c",
+          "to": "\u1092"
+      },
+      {
+          "from": "\u102d\u1036",
+          "to": "\u108e"
+      },
+      {
+          "from": "\u104e\u1004\u103a\u1038",
+          "to": "\u104e"
+      },
+      {
+          "from": "[\u1025\u1009](?=[\u1039\u102f\u1030])",
+          "to": "\u106a"
+      },
+      {
+          "from": "[\u1025\u1009](?=[\u1037]?[\u103a])",
+          "to": "\u1025"
+      },
+      {
+          "from": "\u100a(?=[\u1039\u103d])",
+          "to": "\u106b"
+      },
+      {
+          "from": "(\u1039[\u1000-\u1021])(\u102D){0,1}\u102f",
+          "to": "$1$2\u1033"
+      },
+      {
+          "from": "(\u1039[\u1000-\u1021])\u1030",
+          "to": "$1\u1034"
+      },
+      {
+          "from": "\u1014(?=[\u102d\u102e]?[\u1030\u103d\u103e\u102f\u1039])",
+          "to": "\u108f"
+      },
+      {
+          "from" : "\u1014\u103c",
+          "to" : "\u108f\u103c"
+      },
+      {
+          "from": "\u1039\u1000",
+          "to": "\u1060"
+      },
+      {
+          "from": "\u1039\u1001",
+          "to": "\u1061"
+      },
+      {
+          "from": "\u1039\u1002",
+          "to": "\u1062"
+      },
+      {
+          "from": "\u1039\u1003",
+          "to": "\u1063"
+      },
+      {
+          "from": "\u1039\u1005",
+          "to": "\u1065"
+      },
+      {
+          "from": "\u1039\u1006",
+          "to": "\u1066"
+      },
+      {
+          "from": "\u1039\u1007",
+          "to": "\u1068"
+      },
+      {
+          "from": "\u1039\u1008",
+          "to": "\u1069"
+      },
+      {
+          "from": "\u1039\u100b",
+          "to": "\u106c"
+      },
+      {
+          "from": "\u1039\u100c",
+          "to": "\u106d"
+      },
+      {
+          "from": "\u100d\u1039\u100d",
+          "to": "\u106e"
+      },
+      {
+          "from": "\u100d\u1039\u100e",
+          "to": "\u106f"
+      },
+      {
+          "from": "\u1039\u100f",
+          "to": "\u1070"
+      },
+      {
+          "from": "\u1039\u1010",
+          "to": "\u1071"
+      },
+      {
+          "from": "\u1039\u1011",
+          "to": "\u1073"
+      },
+      {
+          "from": "\u1039\u1012",
+          "to": "\u1075"
+      },
+      {
+          "from": "\u1039\u1013",
+          "to": "\u1076"
+      },
+      {
+          "from": "\u1039[\u1014\u108f]",
+          "to": "\u1077"
+      },
+      {
+          "from": "\u1039\u1015",
+          "to": "\u1078"
+      },
+      {
+          "from": "\u1039\u1016",
+          "to": "\u1079"
+      },
+      {
+          "from": "\u1039\u1017",
+          "to": "\u107a"
+      },
+      {
+          "from": "\u1039\u1018",
+          "to": "\u107b"
+      },
+      {
+          "from": "\u1039\u1019",
+          "to": "\u107c"
+      },
+      {
+          "from": "\u1039\u101c",
+          "to": "\u1085"
+      },
+      {
+          "from": "\u103f",
+          "to": "\u1086"
+      },
+      {
+          "from": "\u103d\u103e",
+          "to": "\u108a"
+      },
+      {
+          "from": "(\u1064)([\u1000-\u1021])([\u103b\u103c]?)\u102d",
+          "to": "$2$3\u108b"
+      },
+      {
+          "from": "(\u1064)([\u1000-\u1021])([\u103b\u103c]?)\u102e",
+          "to": "$2$3\u108c"
+      },
+      {
+          "from": "(\u1064)([\u1000-\u1021])([\u103b\u103c]?)\u1036",
+          "to": "$2$3\u108d"
+      },
+      {
+          "from": "(\u1064)([\u1000-\u1021])([\u103b\u103c]?)([\u1031]?)",
+          "to": "$2$3$4$1"
+      },
+      {
+          "from": "\u101b(?=([\u102d\u102e]?)[\u102f\u1030\u103d\u108a])",
+          "to": "\u1090"
+      },
+      {
+          "from": "\u100f\u1039\u100d",
+          "to": "\u1091"
+      },
+      {
+          "from": "\u100b\u1039\u100b",
+          "to": "\u1097"
+      },
+      {
+          "from": "([\u1000-\u1021\u108f\u1029\u1090\u1092])([\u1060-\u1069\u106c\u106d\u1070-\u107c\u1085\u108a])?([\u103b-\u103e]*)?\u1031",
+          "to": "\u1031$1$2$3"
+      },
+      {
+          "from": "\u103c\u103e",
+          "to": "\u103c\u1087"
+      },
+      {
+          "from": "([\u1000-\u1021\u108f\u1029])([\u1060-\u1069\u106c\u106d\u1070-\u107c\u1085])?(\u103c)",
+          "to": "$3$1$2"
+      },
+      {
+          "from": "\u103a",
+          "to": "\u1039"
+      },
+      {
+          "from": "\u103b",
+          "to": "\u103a"
+      },
+      {
+          "from": "\u103c",
+          "to": "\u103b"
+      },
+      {
+          "from": "\u103d",
+          "to": "\u103c"
+      },
+      {
+          "from": "\u103e",
+          "to": "\u103d"
+      },
+      {
+          "from": "([^\u103a\u100a])\u103d([\u102d\u102e]?)\u102f",
+          "to": "$1\u1088$2"
+      },
+      {
+          "from": "([\u101b\u103a\u103c\u108a\u1088\u1090])([\u1030\u103d])?([\u1032\u1036\u1039\u102d\u102e\u108b\u108c\u108d\u108e]?)(\u102f)?\u1037",
+          "to": "$1$2$3$4\u1095"
+      },
+      {
+          "from": "([\u102f\u1014\u1030\u103d])([\u1032\u1036\u1039\u102d\u102e\u108b\u108c\u108d\u108e]?)\u1037",
+          "to": "$1$2\u1094"
+      },
+      {
+          "from": "([\u103b])([\u1000-\u1021])([\u1087]?)([\u1036\u102d\u102e\u108b\u108c\u108d\u108e]?)\u102f",
+          "to": "$1$2$3$4\u1033"
+      },
+      {
+          "from": "([\u103b])([\u1000-\u1021])([\u1087]?)([\u1036\u102d\u102e\u108b\u108c\u108d\u108e]?)\u1030",
+          "to": "$1$2$3$4\u1034"
+      },
+      {
+          "from": "([\u103a\u103c\u100a\u1020\u1025])([\u103d]?)([\u1036\u102d\u102e\u108b\u108c\u108d\u108e]?)\u102f",
+          "to": "$1$2$3\u1033"
+      },
+      {
+          "from": "([\u103a\u103c\u100a\u101b])(\u103d?)([\u1036\u102d\u102e\u108b\u108c\u108d\u108e]?)\u1030",
+          "to": "$1$2$3\u1034"
+      },
+      {
+          "from": "\u100a\u103d",
+          "to": "\u100a\u1087"
+      },
+      {
+          "from": "\u103d\u1030",
+          "to": "\u1089"
+      },
+      {
+          "from": "\u103b([\u1000\u1003\u1006\u100f\u1010\u1011\u1018\u101a\u101c\u101a\u101e\u101f])",
+          "to": "\u107e$1"
+      },
+      {
+          "from": "\u107e([\u1000\u1003\u1006\u100f\u1010\u1011\u1018\u101a\u101c\u101a\u101e\u101f])([\u103c\u108a])([\u1032\u1036\u102d\u102e\u108b\u108c\u108d\u108e])",
+          "to": "\u1084$1$2$3"
+      },
+      {
+          "from": "\u107e([\u1000\u1003\u1006\u100f\u1010\u1011\u1018\u101a\u101c\u101a\u101e\u101f])([\u103c\u108a])",
+          "to": "\u1082$1$2"
+      },
+      {
+          "from": "\u107e([\u1000\u1003\u1006\u100f\u1010\u1011\u1018\u101a\u101c\u101a\u101e\u101f])([\u1033\u1034]?)([\u1032\u1036\u102d\u102e\u108b\u108c\u108d\u108e])",
+          "to": "\u1080$1$2$3"
+      },
+      {
+          "from": "\u103b([\u1000-\u1021])([\u103c\u108a])([\u1032\u1036\u102d\u102e\u108b\u108c\u108d\u108e])",
+          "to": "\u1083$1$2$3"
+      },
+      {
+          "from": "\u103b([\u1000-\u1021])([\u103c\u108a])",
+          "to": "\u1081$1$2"
+      },
+      {
+          "from": "\u103b([\u1000-\u1021])([\u1033\u1034]?)([\u1032\u1036\u102d\u102e\u108b\u108c\u108d\u108e])",
+          "to": "\u107f$1$2$3"
+      },
+      {
+          "from": "\u103a\u103d",
+          "to": "\u103d\u103a"
+      },
+      {
+          "from": "\u103a([\u103c\u108a])",
+          "to": "$1\u107d"
+      },
+      {
+          "from": "([\u1033\u1034])\u1094",
+          "to": "$1\u1095"
+      },
+      {
+        "from": "\u108F\u1071",
+        "to" : "\u108F\u1072"
+      },
+      {
+        "from": "([\u1000-\u1021])([\u107B\u1066])\u102C",
+        "to": "$1\u102C$2"
+      },
+      {
+        "from": "\u102C([\u107B\u1066])\u1037",
+        "to": "\u102C$1\u1094"
+      }
+  ]
+  ;
+    return replace_with_rule(rule,output);
+  }
+  
+  function zg2uni(output) {
+    var rule = [
+      {
+          "from" : "([\u102D\u102E\u103D\u102F\u1037\u1095])\\1+",
+          "to" : "$1"
+      },
+      {
+          "from": "\u200B",
+          "to": ""
+      },
+      {
+          "from": "(\u103d|\u1087)",
+          "to": "\u103e"
+      },
+      {
+          "from": "\u103c",
+          "to": "\u103d"
+      },
+      {
+          "from": "(\u103b|\u107e|\u107f|\u1080|\u1081|\u1082|\u1083|\u1084)",
+          "to": "\u103c"
+      },
+      {
+          "from": "(\u103a|\u107d)",
+          "to": "\u103b"
+      },
+      {
+          "from": "\u1039",
+          "to": "\u103a"
+      },
+      {
+          "from": "(\u1066|\u1067)",
+          "to": "\u1039\u1006"
+      },
+      {
+          "from": "\u106a",
+          "to": "\u1009"
+      },
+      {
+          "from": "\u106b",
+          "to": "\u100a"
+      },
+      {
+          "from": "\u106c",
+          "to": "\u1039\u100b"
+      },
+      {
+          "from": "\u106d",
+          "to": "\u1039\u100c"
+      },
+      {
+          "from": "\u106e",
+          "to": "\u100d\u1039\u100d"
+      },
+      {
+          "from": "\u106f",
+          "to": "\u100d\u1039\u100e"
+      },
+      {
+          "from": "\u1070",
+          "to": "\u1039\u100f"
+      },
+      {
+          "from": "(\u1071|\u1072)",
+          "to": "\u1039\u1010"
+      },
+      {
+          "from": "\u1060",
+          "to": "\u1039\u1000"
+      },
+      {
+          "from": "\u1061",
+          "to": "\u1039\u1001"
+      },
+      {
+          "from": "\u1062",
+          "to": "\u1039\u1002"
+      },
+      {
+          "from": "\u1063",
+          "to": "\u1039\u1003"
+      },
+      {
+          "from": "\u1065",
+          "to": "\u1039\u1005"
+      },
+      {
+          "from": "\u1068",
+          "to": "\u1039\u1007"
+      },
+      {
+          "from": "\u1069",
+          "to": "\u1039\u1008"
+      },
+      {
+          "from": "(\u1073|\u1074)",
+          "to": "\u1039\u1011"
+      },
+      {
+          "from": "\u1075",
+          "to": "\u1039\u1012"
+      },
+      {
+          "from": "\u1076",
+          "to": "\u1039\u1013"
+      },
+      {
+          "from": "\u1077",
+          "to": "\u1039\u1014"
+      },
+      {
+          "from": "\u1078",
+          "to": "\u1039\u1015"
+      },
+      {
+          "from": "\u1079",
+          "to": "\u1039\u1016"
+      },
+      {
+          "from": "\u107a",
+          "to": "\u1039\u1017"
+      },
+      {
+          "from": "\u107c",
+          "to": "\u1039\u1019"
+      },
+      {
+          "from": "\u1085",
+          "to": "\u1039\u101c"
+      },
+      {
+          "from": "\u1033",
+          "to": "\u102f"
+      },
+      {
+          "from": "\u1034",
+          "to": "\u1030"
+      },
+      {
+          "from": "\u103f",
+          "to": "\u1030"
+      },
+      {
+          "from": "\u1086",
+          "to": "\u103f"
+      },
+      {
+          "from": "\u1036\u1088",
+          "to": "\u1088\u1036"
+      },
+      {
+          "from": "\u1088",
+          "to": "\u103e\u102f"
+      },
+      {
+          "from": "\u1089",
+          "to": "\u103e\u1030"
+      },
+      {
+          "from": "\u108a",
+          "to": "\u103d\u103e"
+      },
+      {
+          "from": "\u103B\u1064",
+          "to": "\u1064\u103B"
+      },
+      {
+          "from": "(\u1031)?([\u1000-\u1021])\u1064",
+          "to": "\u1004\u103a\u1039$1$2"
+      },
+      {
+          "from": "(\u1031)?([\u1000-\u1021])\u108b",
+          "to": "\u1004\u103a\u1039$1$2\u102d"
+      },
+      {
+          "from": "(\u1031)?([\u1000-\u1021])\u108c",
+          "to": "\u1004\u103a\u1039$1$2\u102e"
+      },
+      {
+          "from": "(\u1031)?([\u1000-\u1021])\u108d",
+          "to": "\u1004\u103a\u1039$1$2\u1036"
+      },
+      {
+          "from": "\u108e",
+          "to": "\u102d\u1036"
+      },
+      {
+          "from": "\u108f",
+          "to": "\u1014"
+      },
+      {
+          "from": "\u1090",
+          "to": "\u101b"
+      },
+      {
+          "from": "\u1091",
+          "to": "\u100f\u1039\u100d"
+      },
+      {
+          "from": "\u1019\u102c(\u107b|\u1093)",
+          "to": "\u1019\u1039\u1018\u102c"
+      },
+      {
+          "from": "(\u107b|\u1093)",
+          "to": "\u1039\u1018"
+      },
+      {
+          "from": "(\u1094|\u1095)",
+          "to": "\u1037"
+      },
+      {
+          "from": "([\u1000-\u1021])\u1037\u1032",
+          "to": "$1\u1032\u1037"
+      },
+      {
+          "from": "\u1096",
+          "to": "\u1039\u1010\u103d"
+      },
+      {
+          "from": "\u1097",
+          "to": "\u100b\u1039\u100b"
+      },
+      {
+          "from": "\u103c([\u1000-\u1021])([\u1000-\u1021])?",
+          "to": "$1\u103c$2"
+      },
+      {
+          "from": "([\u1000-\u1021])\u103c\u103a",
+          "to": "\u103c$1\u103a"
+      },
+      {
+          "from": "\u1047(?=[\u102c-\u1030\u1032\u1036-\u1038\u103d\u1038])",
+          "to": "\u101b"
+      },
+      {
+          "from": "\u1031\u1047",
+          "to": "\u1031\u101b"
+      },
+      {
+          "from": "\u1040(\u102e|\u102f|\u102d\u102f|\u1030|\u1036|\u103d|\u103e)",
+          "to": "\u101d$1"
+      },
+      {
+          "from": "([^\u1040\u1041\u1042\u1043\u1044\u1045\u1046\u1047\u1048\u1049])\u1040\u102b",
+          "to": "$1\u101d\u102b"
+      },
+      {
+          "from": "([\u1040\u1041\u1042\u1043\u1044\u1045\u1046\u1047\u1048\u1049])\u1040\u102b(?!\u1038)",
+          "to": "$1\u101d\u102b"
+      },
+      {
+          "from": "^\u1040(?=\u102b)",
+          "to": "\u101d"
+      },
+      {
+          "from": "\u1040\u102d(?!\u0020?/)",
+          "to": "\u101d\u102d"
+      },
+      {
+          "from": "([^\u1040-\u1049])\u1040([^\u1040-\u1049\u0020]|[\u104a\u104b])",
+          "to": "$1\u101d$2"
+      },
+      {
+          "from": "([^\u1040-\u1049])\u1040(?=[\\f\\n\\r])",
+          "to": "$1\u101d"
+      },
+      {
+          "from": "([^\u1040-\u1049])\u1040$",
+          "to": "$1\u101d"
+      },
+      {
+          "from": "\u1031([\u1000-\u1021])(\u103e)?(\u103b)?",
+          "to": "$1$2$3\u1031"
+      },
+      {
+          "from": "([\u1000-\u1021])\u1031([\u103b\u103c\u103d\u103e]+)",
+          "to": "$1$2\u1031"
+      },
+      {
+          "from": "\u1032\u103d",
+          "to": "\u103d\u1032"
+      },
+      {
+          "from": "([\u102d\u102e])\u103b",
+          "to": "\u103b$1"
+      },
+      {
+          "from": "\u103d\u103b",
+          "to": "\u103b\u103d"
+      },
+      {
+          "from": "\u103a\u1037",
+          "to": "\u1037\u103a"
+      },
+      {
+          "from": "\u102f(\u102d|\u102e|\u1036|\u1037)\u102f",
+          "to": "\u102f$1"
+      },
+      {
+          "from": "(\u102f|\u1030)(\u102d|\u102e)",
+          "to": "$2$1"
+      },
+      {
+          "from": "(\u103e)(\u103b|\u103c)",
+          "to": "$2$1"
+      },
+      {
+          "from": "\u1025(?=[\u1037]?[\u103a\u102c])",
+          "to": "\u1009"
+      },
+      {
+          "from": "\u1025\u102e",
+          "to": "\u1026"
+      },
+      {
+          "from": "\u1005\u103b",
+          "to": "\u1008"
+      },
+      {
+          "from": "\u1036(\u102f|\u1030)",
+          "to": "$1\u1036"
+      },
+      {
+          "from": "\u1031\u1037\u103e",
+          "to": "\u103e\u1031\u1037"
+      },
+      {
+          "from": "\u1031\u103e\u102c",
+          "to": "\u103e\u1031\u102c"
+      },
+      {
+          "from": "\u105a",
+          "to": "\u102b\u103a"
+      },
+      {
+          "from": "\u1031\u103b\u103e",
+          "to": "\u103b\u103e\u1031"
+      },
+      {
+          "from": "(\u102d|\u102e)(\u103d|\u103e)",
+          "to": "$2$1"
+      },
+      {
+          "from": "\u102c\u1039([\u1000-\u1021])",
+          "to": "\u1039$1\u102c"
+      },
+      {
+          "from": "\u103c\u1004\u103a\u1039([\u1000-\u1021])",
+          "to": "\u1004\u103a\u1039$1\u103c"
+      },
+      {
+          "from": "\u1039\u103c\u103a\u1039([\u1000-\u1021])",
+          "to": "\u103a\u1039$1\u103c"
+      },
+      {
+          "from": "\u103c\u1039([\u1000-\u1021])",
+          "to": "\u1039$1\u103c"
+      },
+      {
+          "from": "\u1036\u1039([\u1000-\u1021])",
+          "to": "\u1039$1\u1036"
+      },
+     
+      {
+          "from": "\u1031\u1092",
+          "to": "\u1092\u1031"
+      },
+      {
+          "from": "\u1092",
+          "to": "\u100b\u1039\u100c"
+      },
+      {
+          "from": "\u104e",
+          "to": "\u104e\u1004\u103a\u1038"
+      },
+      {
+          "from": "\u1040(\u102b|\u102c|\u1036)",
+          "to": "\u101d$1"
+      },
+      {
+          "from": "\u1025\u1039",
+          "to": "\u1009\u1039"
+      },
+      {
+          "from": "([\u1000-\u1021])\u103c\u1031\u103d",
+          "to": "$1\u103c\u103d\u1031"
+      },
+      {
+          "from": "([\u1000-\u1021])\u103b\u1031\u103d(\u103e)?",
+          "to": "$1\u103b\u103d$2\u1031"
+      },
+      {
+          "from": "([\u1000-\u1021])\u103d\u1031\u103b",
+          "to": "$1\u103b\u103d\u1031"
+      },
+      {
+          "from": "([\u1000-\u1021])\u1031(\u1039[\u1000-\u1021])",
+          "to": "$1$2\u1031"
+      },
+      {
+          "from": "\u1038\u103a",
+          "to": "\u103a\u1038"
+      },
+      {
+          "from": "\u102d\u103a|\u103a\u102d",
+          "to": "\u102d"
+      },
+      {
+          "from": "\u102d\u102f\u103a",
+          "to": "\u102d\u102f"
+      },
+      {
+          "from": "\u0020\u1037",
+          "to": "\u1037"
+      },
+      {
+          "from": "\u1037\u1036",
+          "to": "\u1036\u1037"
+      },
+      {
+          "from": " \u1037",
+          "to": "\u1037"
+      },
+      {
+          "from": "[\u102d]+",
+          "to": "\u102d"
+      },
+      {
+          "from": "[\u103a]+",
+          "to": "\u103a"
+      },
+      {
+          "from": "[\u103d]+",
+          "to": "\u103d"
+      },
+      {
+          "from": "[\u1037]+",
+          "to": "\u1037"
+      },
+      {
+          "from": "[\u102e]+",
+          "to": "\u102e"
+      },
+      {
+          "from": "\u102d\u102e|\u102e\u102d",
+          "to": "\u102e"
+      },
+      {
+          "from": "\u102f\u102d",
+          "to": "\u102d\u102f"
+      },
+      {
+          "from": "\u1037\u1037",
+          "to": "\u1037"
+      },
+      {
+          "from": "\u1032\u1032",
+          "to": "\u1032"
+      },
+      {
+          "from": "\u1044\u1004\u103a\u1038",
+          "to": "\u104E\u1004\u103a\u1038"
+      },
+      {
+          "from": "([\u102d\u102e])\u1039([\u1000-\u1021])",
+          "to": "\u1039$2$1"
+      },
+      {
+          "from": "(\u103c\u1031)\u1039([\u1000-\u1021])",
+          "to": "\u1039$2$1"
+      },
+      {
+          "from": "\u1036\u103d",
+          "to": "\u103d\u1036"
+      }
+  ];
+    return replace_with_rule(rule,output);
+  }
+  
+  function replace_with_rule(rule,output) {
+  
+    var max_loop = rule.length;
+    for(i=0; i < max_loop; i++) {
+      
+      var data = rule[i];
+      var from = data["from"];
+      var to = data["to"];
+  
+      var from_regex = new RegExp(from,"g");
+      output = output.replace(from_regex,to);
+    }
+  
+    return output;
+  
+  }
+  
+// End code from rabbit
+
+'use strict';
 
 // Detecting the browser's unicode redering
-function getWidth(t){
+function mmFontWidth(t){
     var e = document.createElement("div");
     e.setAttribute("style", "position: absolute; top: -999;");
     e.innerHTML = t ;
@@ -28,7 +857,7 @@ function getWidth(t){
 }
 
 function isZawgyiBrowser(){
-    return (getWidth("က္က") >= getWidth("က") * 1.5 );
+    return (mmFontWidth("က္က") >= mmFontWidth("က") * 1.5 );
 }
 
 var  zawgyiUser = isZawgyiBrowser();
@@ -37,7 +866,7 @@ var  zawgyiUser = isZawgyiBrowser();
 /* If converter result is not correct we need to normallize the some error. 
 *  eg. double (ု) error due to mac zawgyi keyboard.
 */
-function normalize(text){
+function uniNormalize(text){
     text =  text.replace( /(\u102F)(\u102F)/g, "$1");
     return text;
 }
@@ -47,12 +876,12 @@ function normalize(text){
 */
 
 function autoConvert(text){
-    textIsZawgyi = isZawgyi(text);
+    textIsZawgyi = isZawgyiTex(text);
     if(textIsZawgyi && !zawgyiUser){
         text = Z1_Uni(text);
-        text = normalize(text);
+        text = Rabbit.zg2uni(text);
     } else if(!textIsZawgyi && zawgyiUser){
-        text = Uni_Z1(text);
+        text = Rabbit.uni2zg(text);
     }
     return text;
 }
@@ -116,16 +945,16 @@ var zawgyiRegex = "\u1031\u103b" // e+medial ra
     // virama + (zawgyi) medial ra
     + "|\u1039[\u107E-\u1084]";
 
-var Zawgyi = new RegExp(zawgyiRegex);
+var ZawgyiReg = new RegExp(zawgyiRegex);
 
 /* Myanmar text checking regular expression 
  *  is the part of Myanmar Font Tagger
  * http://userscripts-mirror.org/scripts/review/103745 
  */
-var Myanmar = new RegExp("[\u1000-\u1021]");
+var MyanmarReg = new RegExp("[\u1000-\u1021]");
 
-function isMyanmar(input) {
-    return Myanmar.test(input) ? true : false;
+function isMyanmarText(input) {
+    return MyanmarReg.test(input) ? true : false;
 }
 
 /*
@@ -135,7 +964,7 @@ function isMyanmar(input) {
  * return = boolean 
  *
  */
-function isZawgyi(input) {
+function isZawgyiTex(input) {
     input = input.trim();
     //console.log(input);
     var textSplittedByLine = input.split(/[\f\n\r\t\v\u00a0\u1680\u180e\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]/);
@@ -145,7 +974,7 @@ function isZawgyi(input) {
             //  console.log(textSplitted[j]);
             if (j != 0)
                 textSplitted[j] = " " + textSplitted[j];
-            if (Zawgyi.test(textSplitted[j]))
+            if (ZawgyiReg.test(textSplitted[j]))
                 return true;
         }
     }
@@ -153,7 +982,7 @@ function isZawgyi(input) {
 }
 
 
-function shouldIgnoreNode(node) {
+function shouldIgnoreElement(node) {
     if (node.nodeName == "INPUT" || node.nodeName == "SCRIPT" || node.nodeName == "TEXTAREA") {
         return true;
     } else if (node.isContentEditable == true) {
@@ -166,7 +995,7 @@ function shouldIgnoreNode(node) {
  * This part are from Myanmar Font Tagger scripts developed by Ko Thant Thet Khin Zaw
  * http://userscripts-mirror.org/scripts/review/103745
  */
-function convertTree(parent) {
+function convert_Tree(parent) {
     if (parent instanceof Node == false || parent instanceof SVGElement) {
         return;
     }
@@ -177,14 +1006,18 @@ function convertTree(parent) {
     for (var i = 0; i < parent.childNodes.length; i++) {
         var child = parent.childNodes[i];
         if (child.nodeType != Node.TEXT_NODE && child.hasChildNodes()) {
-            convertTree(child);
+            convert_Tree(child);
         } else if (child.nodeType == Node.TEXT_NODE) {
             var text = child.textContent.replace(/[\u200b\uFFFD]/g, "");
-            if (text && isMyanmar(text)) {
-                if (shouldIgnoreNode(parent) == false) {
+            if (text && isMyanmarText(text)) {
+                if (shouldIgnoreElement(parent) == false) {
                     child.textContent = autoConvert(text);
                     if (parent.className == null || (parent.classList.contains('_c_o_nvert_') == false && parent.classList.contains('text_exposed_show') == false)) {
                         parent.classList.add('_c_o_nvert_');
+                        // var parentElement = findParent(parent);
+                        // if(isDuplicated(parentElement)===false){
+                        //     parentElement.classList.add("i_am_zawgyi");
+                        // }
                     }
                 }
             }
@@ -215,7 +1048,7 @@ function findParent(element){
 }
 
 
-var addObserver = function() {
+var runObserver = function() {
     var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
     var list = document.querySelector('body');
 
@@ -225,13 +1058,13 @@ var addObserver = function() {
                 for (var i = 0; i < mutation.addedNodes.length; i++) {
                     var node = mutation.addedNodes[i];
                     if (node.nodeType == Node.TEXT_NODE) {
-                        convertTree(node.parentNode);
+                        convert_Tree(node.parentNode);
                     } else {
-                        convertTree(node);
+                        convert_Tree(node);
                     }
                 }
             } else if (mutation.type == 'characterData') {
-                convertTree(mutation.target);
+                convert_Tree(mutation.target);
             }
         });
     });
@@ -248,508 +1081,19 @@ var addObserver = function() {
 
 
 var title = document.title;
-if (isMyanmar(title)) {
+if (isMyanmarText(title)) {
     document.title = autoConvert(title);
 }
 
 
 var list = document.querySelector('body');
-if (list) {
-    convertTree(document.body);
+if (!list) {
+    if (document.addEventListener) {
+        document.addEventListener("DOMContentLoaded",function(){
+            runObserver();
+        }, false);
+    }
+} else {
+    convert_Tree(document.body);
+    runObserver();
 }
-
-addObserver();
-
-
-//    Parabaik Myanmar Text Converter (Zawgyi <> Unicode)
-//    Copyright (C) 2014 Ngwe TUN (Solveware Solution)
-
-//    This program is free software; you can redistribute it and/or modify
-//    it under the terms of the GNU General Public License as published by
-//    the Free Software Foundation; either version 2 of the License, or
-//    (at your option) any later version.
-
-//    This program is distributed in the hope that it will be useful,
-//    but WITHOUT ANY WARRANTY; without even the implied warranty of
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//    GNU General Public License for more details.
-
-//    You should have received a copy of the GNU General Public License along
-//    with this program; if not, write to the Free Software Foundation, Inc.,
-//    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-function Uni_Z1(input)
-{
-   var output = input;
-
-
-   output = output.replace(/\u104E\u1004\u103A\u1038/g, '\u104E');
-   output = output.replace(/\u102B\u103A/g, '\u105A');
-   output = output.replace(/\u102D\u1036/g, '\u108E');
-   output = output.replace(/\u103F/g, '\u1086');
-
-
-   output = output.replace(/(\u102F[\u1036]?)\u1037/g, function($0, $1)
-   {
-      return $1 ? $1 + '\u1094' : $0 + $1;
-   }
-   );
-   output = output.replace(/(\u1030[\u1036]?)\u1037/g, function($0, $1)
-   {
-      return $1 ? $1 + '\u1094' : $0 + $1;
-   }
-   );
-   output = output.replace(/(\u1014[\u103A\u1032]?)\u1037/g, function($0, $1)
-   {
-      return $1 ? $1 + '\u1094' : $0 + $1;
-   }
-   );
-   output = output.replace(/(\u103B[\u1032\u1036]?)\u1037/g, function($0, $1)
-   {
-      return $1 ? $1 + '\u1095' : $0 + $1;
-   }
-   );
-
-   output = output.replace(/(\u103D[\u1032]?)\u1037/g,  function($0, $1)
-   {
-      return $1 ? $1 + '\u1095' : $0 + $1;
-   }
-   );
-
-   output = output.replace(/([\u103B\u103C\u103D][\u102D\u1036]?)\u102F/g, function($0, $1)
-   {
-      return $1 ? $1 + '\u1033' : $0 + $1;
-   }
-   );
-   output = output.replace(/((\u1039[\u1000-\u1021])[\u102D\u1036]?)\u102F/g,  function($0, $1)
-   {
-      return $1 ? $1 + '\u1033' : $0 + $1;
-   }
-   );
-   output = output.replace(/([\u100A\u100C\u1020\u1025\u1029][\u102D\u1036]?)\u102F/g, function($0, $1)
-   {
-      return $1 ? $1 + '\u1033' : $0 + $1;
-   }
-   );
-   output = output.replace(/([\u103B\u103C][\u103D]?[\u103E]?[\u102D\u1036]?)\u1030/g, function($0, $1)
-   {
-      return $1 ? $1 + '\u1034' : $0 + $1;
-
-   }
-   );
-   // uu - 2
-   output = output.replace(/((\u1039[\u1000-\u1021])[\u102D\u1036]?)\u1030/g, function($0, $1)
-   {
-      return $1 ? $1 + '\u1034' : $0 + $1;
-
-   }
-   );
-   // uu - 2
-   output = output.replace(/([\u100A\u100C\u1020\u1025\u1029][\u102D\u1036]?)\u1030/g, function($0, $1)
-   {
-      return $1 ? $1 + '\u1034' : $0 + $1;
-
-   }
-   );
-   // uu - 2
-
-   output = output.replace(/(\u103C)\u103E/g, function($0, $1)
-   {
-      return $1 ? $1 + '\u1087' : $0 + $1;
-
-   }
-   );
-   // ha - 2
-
-
-   output = output.replace(/\u1009(?=[\u103A])/g, '\u1025');
-   output = output.replace(/\u1009(?=\u1039[\u1000-\u1021])/g, '\u1025');
-
-
-
-   // E render
-   output = output.replace( /([\u1000-\u1021\u1029])(\u1039[\u1000-\u1021])?([\u103B-\u103E\u1087]*)?\u1031/g, "\u1031$1$2$3");
-  
-   // Ra render
-
-   output = output.replace( /([\u1000-\u1021\u1029])(\u1039[\u1000-\u1021\u1000-\u1021])?(\u103C)/g, "$3$1$2");
-
-
-
-   // Kinzi
-   output = output.replace(/\u1004\u103A\u1039/g, "\u1064");
-   // kinzi
-   output = output.replace(/(\u1064)([\u1031]?)([\u103C]?)([\u1000-\u1021])\u102D/g, "$2$3$4\u108B");
-   // reordering kinzi lgt
-   output = output.replace(/(\u1064)(\u1031)?(\u103C)?([ \u1000-\u1021])\u102E/g, "$2$3$4\u108C");
-   // reordering kinzi lgtsk
-   output = output.replace(/(\u1064)(\u1031)?(\u103C)?([ \u1000-\u1021])\u1036/g, "$2$3$4\u108D");
-   // reordering kinzi ttt
-   output = output.replace(/(\u1064)(\u1031)?(\u103C)?([ \u1000-\u1021])/g, "$2$3$4\u1064");
-   // reordering kinzi
-
-   // Consonant
-
-   output = output.replace(/\u100A(?=[\u1039\u102F\u1030])/g, "\u106B");
-   // nnya - 2
-   output = output.replace(/\u100A/g, "\u100A");
-   // nnya
-
-   output = output.replace(/\u101B(?=[\u102F\u1030])/g, "\u1090");
-   // ra - 2
-   output = output.replace(/\u101B/g, "\u101B");
-   // ra
-
-   output = output.replace(/\u1014(?=[\u1039\u103D\u103E\u102F\u1030])/g, "\u108F");
-   // na - 2
-   output = output.replace(/\u1014/g, "\u1014");
-   // na
-
-   // Stacked consonants
-   output = output.replace(/\u1039\u1000/g, "\u1060");
-   output = output.replace(/\u1039\u1001/g, "\u1061");
-   output = output.replace(/\u1039\u1002/g, "\u1062");
-   output = output.replace(/\u1039\u1003/g, "\u1063");
-   output = output.replace(/\u1039\u1005/g, "\u1065");
-   output = output.replace(/\u1039\u1006/g, "\u1066");
-   // 1067
-   output = output.replace(/([\u1001\u1002\u1004\u1005\u1007\u1012\u1013\u108F\u1015\u1016\u1017\u1019\u101D])\u1066/g, function($0, $1)
-   {
-      return $1 ? $1 + '\u1067' : $0 + $1;
-
-   }
-   );
-   // 1067
-   output = output.replace(/\u1039\u1007/g, "\u1068");
-   output = output.replace(/\u1039\u1008/g, "\u1069");
-
-   output = output.replace(/\u1039\u100F/g, "\u1070");
-   output = output.replace(/\u1039\u1010/g, "\u1071");
-   // 1072 omit (little shift to right)
-   output = output.replace(/([\u1001\u1002\u1004\u1005\u1007\u1012\u1013\u108F\u1015\u1016\u1017\u1019\u101D])\u1071/g, function($0, $1)
-   {
-      return $1 ? $1 + '\u1072' : $0 + $1;
-
-   }
-   );
-   // 1067
-   output = output.replace(/\u1039\u1011/g, "\u1073");
-   // \u1074 omit(little shift to right)
-   output = output.replace(/([\u1001\u1002\u1004\u1005\u1007\u1012\u1013\u108F\u1015\u1016\u1017\u1019\u101D])\u1073/g, function($0, $1)
-   {
-      return $1 ? $1 + '\u1074' : $0 + $1;
-
-   }
-   );
-   // 1067
-   output = output.replace(/\u1039\u1012/g, "\u1075");
-   output = output.replace(/\u1039\u1013/g, "\u1076");
-   output = output.replace(/\u1039\u1014/g, "\u1077");
-   output = output.replace(/\u1039\u1015/g, "\u1078");
-   output = output.replace(/\u1039\u1016/g, "\u1079");
-   output = output.replace(/\u1039\u1017/g, "\u107A");
-   output = output.replace(/\u1039\u1018/g, "\u107B");
-   output = output.replace(/\u1039\u1019/g, "\u107C");
-   output = output.replace(/\u1039\u101C/g, "\u1085");
-
-
-   output = output.replace(/\u100F\u1039\u100D/g, "\u1091");
-   output = output.replace(/\u100B\u1039\u100C/g, "\u1092");
-   output = output.replace(/\u1039\u100C/g, "\u106D");
-   output = output.replace(/\u100B\u1039\u100B/g, "\u1097");
-   output = output.replace(/\u1039\u100B/g, "\u106C");
-   output = output.replace(/\u100E\u1039\u100D/g, "\u106F");
-   output = output.replace(/\u100D\u1039\u100D/g, "\u106E");
-
-   output = output.replace(/\u1009(?=\u103A)/g, "\u1025");
-   // u
-   output = output.replace(/\u1025(?=[\u1039\u102F\u1030])/g, "\u106A");
-   // u - 2
-   output = output.replace(/\u1025/g, "\u1025");
-   // u
-   /////////////////////////////////////
-
-   output = output.replace(/\u103A/g, "\u1039");
-   // asat
-
-   output = output.replace(/\u103B\u103D\u103E/g, "\u107D\u108A");
-   // ya wa ha
-   output = output.replace(/\u103D\u103E/g, "\u108A");
-   // wa ha
-
-   output = output.replace(/\u103B/g, "\u103A");
-   // ya
-   output = output.replace(/\u103C/g, "\u103B");
-   // ra
-   output = output.replace(/\u103D/g, "\u103C");
-   // wa
-   output = output.replace(/\u103E/g, "\u103D");
-   // ha
-   output = output.replace(/\u103A(?=[\u103C\u103D\u108A])/g, "\u107D");
-   // ya - 2
-
-   output = output.replace(/(\u100A(?:[\u102D\u102E\u1036\u108B\u108C\u108D\u108E])?)\u103D/g, function($0, $1)
-   {
-      //      return $1 ? $1 + '\u1087 ' : $0 + $1;
-      return $1 ? $1 + '\u1087' : $0 ;
-
-   }
-   );
-   // ha - 2
-
-   output = output.replace(/\u103B(?=[\u1000\u1003\u1006\u100F\u1010\u1011\u1018\u101A\u101C\u101E\u101F\u1021])/g, "\u107E");
-   // great Ra with wide consonants
-   output = output.replace(/\u107E([\u1000-\u1021\u108F])(?=[\u102D\u102E\u1036\u108B\u108C\u108D\u108E])/g, "\u1080$1");
-   // great Ra with upper sign
-   output = output.replace(/\u107E([\u1000-\u1021\u108F])(?=[\u103C\u108A])/g, "\u1082$1");
-   // great Ra with under signs
-
-   output = output.replace(/\u103B([\u1000-\u1021\u108F])(?=[\u102D \u102E \u1036 \u108B \u108C \u108D \u108E])/g, "\u107F$1");
-   // little Ra with upper sign
-
-   output = output.replace(/\u103B([\u1000-\u1021\u108F])(?=[\u103C\u108A])/g, "\u1081$1");
-   // little Ra with under signs
-
-   output = output.replace(/(\u1014[\u103A\u1032]?)\u1037/g, function($0, $1)
-   {
-      return $1 ? $1 + '\u1094' : $0 + $1;
-
-   }
-   );
-   // aukmyint
-   output = output.replace(/(\u1033[\u1036]?)\u1094/g, function($0, $1)
-   {
-      return $1 ? $1 + '\u1095' : $0 + $1;
-
-   }
-   );
-   // aukmyint
-   output = output.replace(/(\u1034[\u1036]?)\u1094/g, function($0, $1)
-   {
-      return $1 ? $1 + '\u1095' : $0 + $1;
-
-   }
-   );
-   // aukmyint
-   output = output.replace(/([\u103C\u103D\u108A][\u1032]?)\u1037/g, function($0, $1)
-   {
-      return $1 ? $1 + '\u1095' : $0 + $1;
-
-   }
-   );
-   // aukmyint
-   return output;
-
-}
-// Uni_Z1
-
-
-//    Parabaik Myanmar Text Converter (Zawgyi <> Unicode)
-//    Copyright (C) 2014 Ngwe TUN (Solveware Solution)
-
-//    This program is free software; you can redistribute it and/or modify
-//    it under the terms of the GNU General Public License as published by
-//    the Free Software Foundation; either version 2 of the License, or
-//    (at your option) any later version.
-
-//    This program is distributed in the hope that it will be useful,
-//    but WITHOUT ANY WARRANTY; without even the implied warranty of
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//    GNU General Public License for more details.
-
-//    You should have received a copy of the GNU General Public License along
-//    with this program; if not, write to the Free Software Foundation, Inc.,
-//    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-function Z1_Uni(input)
-{
-  var output=input;
-
-   var tallAA = "\u102B";
-   var AA = "\u102C";
-   var vi = "\u102D";
-   // lone gyi tin
-   var ii = "\u102E";
-   var u = "\u102F";
-   var uu = "\u1030";
-   var ve = "\u1031";
-   var ai = "\u1032";
-   var ans = "\u1036";
-   var db = "\u1037";
-   var visarga = "\u1038";
-
-   var asat = "\u103A";
-
-   var ya = "\u103B";
-   var ra = "\u103C";
-   var wa = "\u103D";
-   var ha = "\u103E";
-   var zero = "\u1040";
-   
-   
-   output =  output.replace( /\u106A/g, " \u1009");
-   output =  output.replace( /\u1025(?=[\u1039\u102C])/g, "\u1009"); //new
-    output =  output.replace( /\u1025\u102E/g, "\u1026"); //new
-   output =  output.replace( /\u106B/g, "\u100A");
-   output =  output.replace( /\u1090/g, "\u101B");
-   output =  output.replace( /\u1040/g, zero);
-
-   output =  output.replace( /\u108F/g, "\u1014");
-   output =  output.replace( /\u1012/g, "\u1012");
-   output =  output.replace( /\u1013/g, "\u1013");
-   /////////////
-
-
-   output =  output.replace( /[\u103D\u1087]/g, ha);
-   // ha
-   output =  output.replace( /\u103C/g, wa);
-   // wa
-   output =  output.replace( /[\u103B\u107E\u107F\u1080\u1081\u1082\u1083\u1084]/g, ra);
-   // ya yint(ra)
-   output =  output.replace( /[\u103A\u107D]/g, ya);
-   // ya
-
-   output =  output.replace( /\u103E\u103B/g, ya + ha);
-   // reorder
-
-   output =  output.replace( /\u108A/g, wa + ha);
-   output =  output.replace( /\u103E\u103D/g, wa + ha);
-   // wa ha
-
-   ////////////////////// Reordering
-
-   output =  output.replace( /(\u1031)?(\u103C)?([\u1000-\u1021])\u1064/g, "\u1064$1$2$3");
-   // reordering kinzi
-   output =  output.replace( /(\u1031)?(\u103C)?([\u1000-\u1021])\u108B/g, "\u1064$1$2$3\u102D");
-   // reordering kinzi lgt
-   output =  output.replace( /(\u1031)?(\u103C)?([\u1000-\u1021])\u108C/g, "\u1064$1$2$3\u102E");
-   // reordering kinzi lgtsk
-   output =  output.replace( /(\u1031)?(\u103C)?([\u1000-\u1021])\u108D/g, "\u1064$1$2$3\u1036");
-   // reordering kinzi ttt
-
-   ////////////////////////////////////////
-
-   output =  output.replace( /\u105A/g, tallAA + asat);
-   output =  output.replace( /\u108E/g, vi + ans);
-   // lgt ttt
-   output =  output.replace( /\u1033/g, u);
-   output =  output.replace( /\u1034/g, uu);
-   output =  output.replace( /\u1088/g, ha+u);
-   // ha  u
-   output =  output.replace( /\u1089/g, ha+uu);
-   // ha  uu
-
-   ///////////////////////////////////////
-
-   output =  output.replace( /\u1039/g, "\u103A");
-   output =  output.replace( /[\u1094\u1095]/g, db);
-   // aukmyint
-
-   ///////////////////////////////////////Pasint order human error
-    output =  output.replace( /([\u1000-\u1021])([\u102C\u102D\u102E\u1032\u1036]){1,2}([\u1060\u1061\u1062\u1063\u1065\u1066\u1067\u1068\u1069\u1070\u1071\u1072\u1073\u1074\u1075\u1076\u1077\u1078\u1079\u107A\u107B\u107C\u1085])/g, "$1$3$2");  //new
-   
-   
-   
-   /////////////
-
-   output =  output.replace( /\u1064/g, "\u1004\u103A\u1039");
-
-   output =  output.replace( /\u104E/g, "\u104E\u1004\u103A\u1038");
-
-   output =  output.replace( /\u1086/g, "\u103F");
-
-   output =  output.replace( /\u1060/g, '\u1039\u1000');
-   output =  output.replace( /\u1061/g, '\u1039\u1001');
-   output =  output.replace( /\u1062/g, '\u1039\u1002');
-   output =  output.replace( /\u1063/g, '\u1039\u1003');
-   output =  output.replace( /\u1065/g, '\u1039\u1005');
-   output =  output.replace( /[\u1066\u1067]/g, '\u1039\u1006');
-   output =  output.replace( /\u1068/g, '\u1039\u1007');
-   output =  output.replace( /\u1069/g, '\u1039\u1008');
-   output =  output.replace( /\u106C/g, '\u1039\u100B');
-   output =  output.replace( /\u1070/g, '\u1039\u100F');
-   output =  output.replace( /[\u1071\u1072]/g, '\u1039\u1010');
-   output =  output.replace( /[\u1073\u1074]/g, '\u1039\u1011');
-   output =  output.replace( /\u1075/g, '\u1039\u1012');
-   output =  output.replace( /\u1076/g, '\u1039\u1013');
-   output =  output.replace( /\u1077/g, '\u1039\u1014');
-   output =  output.replace( /\u1078/g, '\u1039\u1015');
-   output =  output.replace( /\u1079/g, '\u1039\u1016');
-   output =  output.replace( /\u107A/g, '\u1039\u1017');
-   output =  output.replace( /\u107B/g, '\u1039\u1018');
-   output =  output.replace( /\u107C/g, '\u1039\u1019');
-   output =  output.replace( /\u1085/g, '\u1039\u101C');
-   output =  output.replace( /\u106D/g, '\u1039\u100C');
-
-   output =  output.replace( /\u1091/g, '\u100F\u1039\u100D');
-   output =  output.replace( /\u1092/g, '\u100B\u1039\u100C');
-   output =  output.replace( /\u1097/g, '\u100B\u1039\u100B');
-   output =  output.replace( /\u106F/g, '\u100E\u1039\u100D');
-   output =  output.replace( /\u106E/g, '\u100D\u1039\u100D');
-
-   /////////////////////////////////////////////////////////
-
-   output =  output.replace( /(\u103C)([\u1000-\u1021])(\u1039[\u1000-\u1021])?/g, "$2$3$1");
-   // reordering ra
-   
-   //output =  output.replace( /(\u103E)?(\u103D)?([\u103B\u103C])/g, "$3$2$1");
-   // reordering ra
-   
-   output =  output.replace( /(\u103E)(\u103D)([\u103B\u103C])/g, "$3$2$1");
-    output =  output.replace( /(\u103E)([\u103B\u103C])/g, "$2$1");
-    
-    output =  output.replace( /(\u103D)([\u103B\u103C])/g, "$2$1");
-   
-  
-
-
-  
-   
-   
-   output = output.replace(/(([\u1000-\u101C\u101E-\u102A\u102C\u102E-\u103F\u104C-\u109F]))(\u1040)(?=\u0020)?/g, function($0, $1)
-   {
-      return $1 ? $1 + '\u101D' : $0 + $1;
-
-   }
-   );
-   // zero and wa
-   
-   
-    output = output.replace(/((\u101D))(\u1040)(?=\u0020)?/g, function($0, $1)
-   {
-      return $1 ? $1 + '\u101D' : $0 + $1;
-
-   }
-   );
-   // zero and wa
-   
-   
- 
-
-
-   output = output.replace(/(([\u1000-\u101C\u101E-\u102A\u102C\u102E-\u103F\u104C-\u109F\u0020]))(\u1047)/g, function($0, $1)
-   {
-      return $1 ? $1 + '\u101B' : $0 + $1;
-
-   }
-   );
-   // seven and ra
-
-   output =  output.replace( /(\u1047)( ? = [\u1000 - \u101C\u101E - \u102A\u102C\u102E - \u103F\u104C - \u109F\u0020])/g, "\u101B");
-   // seven and ra
-   
-
-  /* output =  output.replace( /(\u1031)?([\u1000-\u1021])(\u1039[\u1000-\u1021])?([\u102D\u102E\u1032])?([\u1036\u1037\u1038]{0,2})([\u103B-\u103E]{0,3})([\u102F\u1030])?([\u102D\u102E\u1032])?/g, "$2$3$6$1$4$8$7$5");
-   // reordering storage order*/
-   
-   output =  output.replace( /(\u1031)?([\u1000-\u1021])(\u1039[\u1000-\u1021])?([\u102D\u102E\u1032])?([\u1036\u1037\u1038]{0,2})([\u103B-\u103E]{0,3})([\u102F\u1030])?([\u1036\u1037\u1038]{0,2})([\u102D\u102E\u1032])?/g, "$2$3$6$1$4$9$7$5$8");
-   // reordering storage order 
-   output = output.replace(ans+u, u+ans);
-   
-    output =  output.replace( /(\u103A)(\u1037)/g, "$2$1");
-   // For Latest Myanmar3
-
-
-   return output;
-
-
-}//Z1_Uni
-
