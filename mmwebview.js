@@ -67,7 +67,6 @@ function uniNormalize(text){
 function autoConvert(text){
     textIsZawgyi = isZawgyiTex(text);
     if(textIsZawgyi && !zawgyiUser){
-        text = Z1_Uni(text);
         text = Rabbit.zg2uni(text);
     } else if(!textIsZawgyi && zawgyiUser){
         text = Rabbit.uni2zg(text);
