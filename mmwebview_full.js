@@ -942,7 +942,13 @@ var zawgyiRegex = "\u1031\u103b" // e+medial ra
     // U | UU | AI + (zawgyi) dot below
     + "|[\u102f\u1030\u1032]\u1094"
     // virama + (zawgyi) medial ra
-    + "|\u1039[\u107E-\u1084]";
+    + "|\u1039[\u107E-\u1084]"
+
+    // rules add by thixpin
+    // space + e + consonant
+    + "|[ $A-Za-z0-9]\u1031[\u1000-\u1021]"
+    // consonant + Visarga 
+    + "|[\u1000-\u1021]\u1038";
 
 var ZawgyiReg = new RegExp(zawgyiRegex);
 
@@ -1008,7 +1014,7 @@ function convert_Tree(parent) {
             convert_Tree(child);
         } else if (child.nodeType == Node.TEXT_NODE) {
             var text = child.textContent.replace(/[\u200b\uFFFD]/g, "");
-            if (text && isMyanmarText(text)) {
+            if (text && isMyanmarText(text) && isZawgyiTex(text) != zawgyiUser) {
                 if (shouldIgnoreElement(parent) == false) {
                     child.textContent = autoConvert(text);
                     if (parent.className == null || (parent.classList.contains('_c_o_nvert_') == false && parent.classList.contains('text_exposed_show') == false)) {
