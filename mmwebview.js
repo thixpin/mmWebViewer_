@@ -20,12 +20,19 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-//  Disable MUA Web Converter to prevent duplicate converting. 
 (function(){
+    //  Disable MUA Web Converter to prevent duplicate converting. 
     var disableMUA = document.createElement("div");
     disableMUA.setAttribute("style", "display: none");
     disableMUA.setAttribute("id", "disableMUA");
     document.body.appendChild(disableMUA);
+
+    // add css to html
+    var style = document.createElement("style");
+    style.innerHTML = ' @keyframes changecolorhover { to { border-left: 4px solid #FD1100; }} '
+                    + ' ._c_o_nvert_:hover{ animation-name: changecolorhover; animation-duration: 1s; animation-timing-function: linear; animation-iteration-count: infinite; animation-direction: alternate; } '
+                    + ' ._c_o_nvert_{ border-left: 4px solid #DDDFE2; padding-left: .6em; } ';
+    document.head.appendChild(style);
 })();
 
 // start code from rabbit
